@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sajo.mini.mapper.ItemMapper">
+    <resultMap id="itemResultMap" type="com.sajo.mini.model.dto.ItemDTO">
+        <id property="itemNumber" column="Item_Number"/>
+        <result property="itemName" column="Item_Name"/>
+        <result property="itemJobNumber" column="JobCode"/>
+        <result property="itemPrice" column="Item_Price"/>
+        <result property="itemLevel" column="Item_Level"/>
+        <result property="effect" column="Item_Effect"/>
+    </resultMap>
+    <select id="selectAllItem" resultMap="itemResultMap">
+        SELECT
+            A.Item_Number,
+            A.Item_Name,
+            A.JobCode,
+            A.Item_Price,
+            A.Item_Level,
+            A.Item_Effect
+        FROM item A
+    </select>
+    <insert id="insertItem">
+        INSERT INTO item(
+        Item_Name,
+        JobCode,
+        Item_Price,
+        Item_Level,
+        Item_Effect)
+        VALUES(
+        #{itemName}, #{itemJobNumber},
+        #{itemPrice}, #{itemLevel}, #{effect}
+        )
+    </insert>
+    <delete id="productDelete">
+        DELETE
+        FROM Item
+        WHERE Item_Name =  #{itemName}
+    </delete>
+</mapper>
+
+
+
